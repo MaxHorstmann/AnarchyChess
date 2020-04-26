@@ -10,6 +10,8 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="chessboardjs/chessboard-1.0.0.css">
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,11 +20,8 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
+    <div id="myBoard" class="container" style="width:600px">
 
-      <canvas id="myCanvas" width="560" height="560" style="border:2px solid #d3d3d3;">
-        HTML5 canvas not supported, please use a modern browser.
-      </canvas>
 
 
     </div><!-- /.container -->
@@ -33,6 +32,8 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
+    <script src="chessboardjs/chessboard-1.0.0.js"></script>
     <script src="main.js"></script>
+
   </body>
   </html>
