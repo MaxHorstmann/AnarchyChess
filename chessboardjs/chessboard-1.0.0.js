@@ -16,7 +16,7 @@
   // ---------------------------------------------------------------------------
 
   var NUMBER_OF_ROWS = 16
-  var NUMBER_OF_COLUMNS = 16
+  var NUMBER_OF_COLUMNS = 32
 
   var ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
   var COLUMNS = []
