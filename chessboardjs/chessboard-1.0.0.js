@@ -33,7 +33,7 @@
   var MINIMUM_JQUERY_VERSION = '1.8.3'
   var RUN_ASSERTS = false
   var START_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'
-  var START_POSITION = fenToObj(START_FEN)
+  var START_POSITION = createStartPosition() // fenToObj(START_FEN)
 
   // default animation speeds
   var DEFAULT_APPEAR_SPEED = 200
@@ -552,6 +552,60 @@
   // ---------------------------------------------------------------------------
   // Config
   // ---------------------------------------------------------------------------
+
+  function createStartPosition () {
+    var position = {}
+
+    // pawns
+    for (var j = 0; j < NUMBER_OF_COLUMNS; j++) {
+      position[COLUMNS[j] + 2] = 'wP'
+      position[COLUMNS[j] + (NUMBER_OF_ROWS - 1)] = 'bP'
+    }
+
+    var piecesPerSide = 0
+
+    // rooks
+    var rooksPerSide = NUMBER_OF_COLUMNS / 8
+    for (j = 0; j < rooksPerSide; j++) {
+      position[COLUMNS[j] + 1] = 'wR'
+      position[COLUMNS[NUMBER_OF_COLUMNS - j - 1] + 1] = 'wR'
+      position[COLUMNS[j] + NUMBER_OF_ROWS] = 'bR'
+      position[COLUMNS[NUMBER_OF_COLUMNS - j - 1] + NUMBER_OF_ROWS] = 'bR'
+    }
+    piecesPerSide += rooksPerSide
+
+    // Knights
+    var knightsPerSide = rooksPerSide
+    for (j = 0; j < knightsPerSide; j++) {
+      position[COLUMNS[j + piecesPerSide] + 1] = 'wN'
+      position[COLUMNS[NUMBER_OF_COLUMNS - j - 1 - piecesPerSide] + 1] = 'wN'
+      position[COLUMNS[j + piecesPerSide] + NUMBER_OF_ROWS] = 'bN'
+      position[COLUMNS[NUMBER_OF_COLUMNS - j - 1 - piecesPerSide] + NUMBER_OF_ROWS] = 'bN'
+    }
+    piecesPerSide += knightsPerSide
+
+    // Bishops
+    var bishopsPerSide = rooksPerSide
+    for (j = 0; j < bishopsPerSide; j++) {
+      position[COLUMNS[j + piecesPerSide] + 1] = 'wB'
+      position[COLUMNS[NUMBER_OF_COLUMNS - j - 1 - piecesPerSide] + 1] = 'wB'
+      position[COLUMNS[j + piecesPerSide] + NUMBER_OF_ROWS] = 'bB'
+      position[COLUMNS[NUMBER_OF_COLUMNS - j - 1 - piecesPerSide] + NUMBER_OF_ROWS] = 'bB'
+    }
+    piecesPerSide += bishopsPerSide
+
+    // Queens & Kings
+    var queensAndKindsPerSide = rooksPerSide
+    for (j = 0; j < queensAndKindsPerSide; j++) {
+      position[COLUMNS[j + piecesPerSide] + 1] = 'wQ'
+      position[COLUMNS[NUMBER_OF_COLUMNS - j - 1 - piecesPerSide] + 1] = 'wK'
+      position[COLUMNS[j + piecesPerSide] + NUMBER_OF_ROWS] = 'bQ'
+      position[COLUMNS[NUMBER_OF_COLUMNS - j - 1 - piecesPerSide] + NUMBER_OF_ROWS] = 'bK'
+    }
+    piecesPerSide += queensAndKindsPerSide
+
+    return position
+  }
 
   function expandConfigArgumentShorthand (config) {
     if (config === 'start') {
