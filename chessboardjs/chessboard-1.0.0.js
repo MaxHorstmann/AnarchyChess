@@ -1126,12 +1126,9 @@
       // clear the board
       $board.find('.' + CSS.piece).remove()
 
-      console.log(currentPosition)
       // add the pieces
       for (var i in currentPosition) {
-        console.log(i)
         if (!currentPosition.hasOwnProperty(i)) continue
-        console.log('#' + squareElsIds[i])
         $('#' + squareElsIds[i]).append(buildPieceHTML(currentPosition[i]))
       }
     }
@@ -1154,11 +1151,11 @@
     function setCurrentPosition (position) {
       var oldPos = deepCopy(currentPosition)
       var newPos = deepCopy(position)
-      var oldFen = objToFen(oldPos)
-      var newFen = objToFen(newPos)
+      // var oldFen = objToFen(oldPos)
+      // var newFen = objToFen(newPos)
 
       // do nothing if no change in position
-      if (oldFen === newFen) return
+      // if (oldFen === newFen) return
 
       // run their onChange function
       if (isFunction(config.onChange)) {
@@ -1264,6 +1261,7 @@
 
       // update position
       var newPosition = deepCopy(currentPosition)
+
       delete newPosition[draggedPieceSource]
       newPosition[square] = draggedPiece
       setCurrentPosition(newPosition)
